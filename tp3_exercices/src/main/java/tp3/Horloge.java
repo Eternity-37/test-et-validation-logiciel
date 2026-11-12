@@ -24,14 +24,11 @@ public class Horloge {
     }
 
     public void addSecondes(int s){
-        secondes += s;
-        if (secondes >= 60){
-            minutes = secondes%60;
-            secondes = secondes - minutes*60;
-        }
-        if (minutes >= 60){
-            heures = minutes%60;
-            minutes = minutes - heures*60;
-        }
+        int total = heures * 3600 + minutes * 60 + secondes + s;
+        total = Math.floorMod(total, 86400);
+
+        heures = total /3600;
+        minutes = (total % 3600) / 60;
+        secondes = total %60;
     }
 }
